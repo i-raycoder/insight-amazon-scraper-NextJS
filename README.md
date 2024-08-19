@@ -1,6 +1,6 @@
 # Insight
 
-![Insight Logo](public/insight-logo.png){: width="50" }
+<img src="public/insight-logo.png" alt="Insight Logo" width="50" />
 
 **Insight** is a powerful Amazon product detail scraper built with Next.js, Tailwind CSS, and Puppeteer. It allows users to scrape detailed product information from Amazon using either individual product URLs or by bulk scraping from a list of URLs or Excel files. This README provides a comprehensive guide to get you started with Insight.
 
