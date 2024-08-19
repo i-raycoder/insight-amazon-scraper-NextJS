@@ -1,36 +1,109 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Insight
+
+![Insight Logo](public/insight-logo.png)
+
+**Insight** is a powerful Amazon product detail scraper built with Next.js, Tailwind CSS, and Puppeteer. It allows users to scrape detailed product information from Amazon using either individual product URLs or by bulk scraping from a list of URLs or Excel files. This README provides a comprehensive guide to get you started with Insight.
+
+## Table of Contents
+
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Commands](#commands)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Features
+
+- **Scrape Individual Products**: Enter Amazon product URLs to fetch detailed product information.
+- **Bulk Scrape**: Add multiple product URLs (one per line) or upload Excel files (`.csv`, `.xlsx`, `.xls`) to scrape data in bulk.
+- **Export Data**: Export scraped product data to JSON files for easy access and manipulation.
+- **Responsive Design**: Modern and responsive UI designed with Tailwind CSS.
 
 ## Getting Started
 
-First, run the development server:
+To get started with Insight, you'll need to set up a few things on your local machine. Follow the instructions below to install and run the application.
+
+## Installation
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/insight.git
+cd insight
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory and add any necessary environment variables. For example:
+
+```env
+# Example environment variables
+NEXT_PUBLIC_API_URL=https://api.example.com
+```
+
+## Usage
+
+### Run the Development Server
+
+Start the development server to run Insight locally:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit `http://localhost:3000` in your browser to view the application.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Scraping Individual Products
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Enter the Amazon product URL in the search field.
+2. Click "Scrape" to fetch the product details.
 
-## Learn More
+### Bulk Scraping
 
-To learn more about Next.js, take a look at the following resources:
+1. Navigate to the "Bulk Scrape" page.
+2. **Method 1**: Enter multiple Amazon product URLs, one per line, into the textarea and click "Scrape Bulk."
+3. **Method 2**: Upload an Excel file containing product URLs and click "Scrape Bulk."
+4. View and export the scraped data as needed.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Exporting Data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- To export all scraped products to a JSON file, click "Export All" in the relevant section.
 
-## Deploy on Vercel
+## Commands
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Here's a quick overview of the commands used in Insight:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Start Development Server**: `npm run dev`
+- **Build for Production**: `npm run build`
+- **Run Tests**: `npm test`
+
+## Contributing
+
+Contributions are welcome! If you have suggestions or improvements, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/YourFeature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin feature/YourFeature`
+5. Create a new Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+### Additional Notes:
+
+- **Favicon**: Make sure the favicon is correctly placed in the `public` directory.
+- **File Paths**: Adjust any file paths and environment variables as necessary.
+
+Feel free to customize this README further to better suit your project’s specifics or branding.
