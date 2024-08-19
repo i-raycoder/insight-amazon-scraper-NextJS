@@ -1,6 +1,32 @@
 "use server";
-import puppeteer from "puppeteer";
 import { revalidatePath } from "next/cache";
+
+const chromium = require('chrome-aws-lambda');
+const puppeteer = require('puppeteer-core');
+
+(async () => {
+  let browser;
+  try {
+    browser = await puppeteer.launch({
+      args: chromium.args,
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
+    });
+
+    const page = await browser.newPage();
+    await page.goto('https://example.com');
+    // Add your scraping logic here
+
+  } catch (error) {
+    console.error('Error during scraping:', error);
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+})();
+
 
 export async function scrapeAmzProduct(url) {
   try {
