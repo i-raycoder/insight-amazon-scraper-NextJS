@@ -32,9 +32,9 @@ export default function BulkScrape() {
   };
   function Header() {
     return (
-      <header className="bg-gray-800 p-4 shadow-md flex items-center justify-between">
-        <div className="flex items-center space-x-2">
-          <h1 className="text-2xl font-bold text-white">Insight</h1>
+      <header class="bg-gray-800 p-4 shadow-md flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <h1 class="text-2xl font-bold text-white">Insight</h1>
         </div>
       </header>
     );
@@ -87,28 +87,28 @@ export default function BulkScrape() {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
-      <div className="container mx-auto p-8 flex-grow">
-        <header className="bg-black p-4 shadow-md flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <h1 className="text-2xl font-bold text-white">Bulk Scrape.</h1>
+    <div class="bg-gray-100 min-h-screen flex flex-col">
+      <div class="container mx-auto p-8 flex-grow">
+        <header class="bg-black p-4 shadow-md flex items-center justify-between">
+          <div class="flex items-center space-x-2">
+            <h1 class="text-2xl font-bold text-white">Bulk Scrape.</h1>
           </div>
         </header>
-        <h1 className="text-3xl font-bold text-gray-900 mb-1 pt-5">Insight.</h1>
-        <p className="text-lg text-gray-600">Amazon scraping made easy.</p>
+        <h1 class="text-3xl font-bold text-gray-900 mb-1 pt-5">Insight.</h1>
+        <p class="text-lg text-gray-600">Amazon scraping made easy.</p>
 
-        <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
           <textarea
-            className="w-full h-32 p-4 text-sm text-gray-800 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            class="w-full h-32 p-4 text-sm text-gray-800 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-400"
             placeholder="Enter multiple Amazon product URLs, one per line..."
             value={urls}
             onChange={(e) => setUrls(e.target.value)}
           />
 
-          <div className="flex items-center space-x-4">
+          <div class="flex items-center space-x-4">
             <button
               onClick={handleBulkScrape}
-              className={`py-2 px-6 text-sm text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ${
+              class={`py-2 px-6 text-sm text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ${
                 scraping ? "opacity-50 cursor-not-allowed" : ""
               }`}
               disabled={scraping}
@@ -120,43 +120,43 @@ export default function BulkScrape() {
               type="file"
               accept=".xlsx, .xls"
               onChange={handleFileUpload}
-              className="py-2 px-4 text-sm text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300"
+              class="py-2 px-4 text-sm text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-lg cursor-pointer transform hover:scale-105 transition-transform duration-300"
             />
           </div>
         </div>
 
         {products.length > 0 && (
-          <div className="mb-6 flex justify-end">
+          <div class="mb-6 flex justify-end">
             <button
               onClick={exportAll}
-              className="py-2 px-6 text-sm text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-md"
+              class="py-2 px-6 text-sm text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-md"
             >
               Export All
             </button>
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product, index) => (
             <div
               key={index}
-              className="border border-gray-300 rounded-lg shadow-sm p-4 bg-white"
+              class="border border-gray-300 rounded-lg shadow-sm p-4 bg-white"
             >
               {product.imageUrl && (
-                <div className="flex justify-center mb-4">
+                <div class="flex justify-center mb-4">
                   <img
                     src={product.imageUrl}
                     alt={product.productName}
-                    className="w-40 h-40 object-contain"
+                    class="w-40 h-40 object-contain"
                   />
                 </div>
               )}
 
-              <div className="text-center">
-                <h2 className="text-lg font-medium text-gray-900 mb-2 line-clamp-2">
+              <div class="text-center">
+                <h2 class="text-lg font-medium text-gray-900 mb-2 line-clamp-2">
                   {product.productName}
                 </h2>
-                <p className="text-xl font-semibold text-green-600 mb-4">
+                <p class="text-xl font-semibold text-green-600 mb-4">
                   {product.productPrice}
                 </p>
               </div>
@@ -166,8 +166,8 @@ export default function BulkScrape() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-4 mt-auto">
-        <div className="container mx-auto text-center">
+      <footer class="bg-black text-white py-4 mt-auto">
+        <div class="container mx-auto text-center">
           © 2024 Insight - All Rights Reserved.
         </div>
       </footer>

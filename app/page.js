@@ -8,7 +8,7 @@ import AboutMe from './components/About-Me';
 export default function LandingPage() {
   return (
 
-    <div className="text-black bg-black">
+    <div class="text-black bg-black">
       <Head>
         <title>Insight.</title>
       </Head>

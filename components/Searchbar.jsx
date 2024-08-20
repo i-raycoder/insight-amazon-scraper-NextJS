@@ -39,17 +39,17 @@ const Searchbar = () => {
   };
 
   return (
-    <div className="w-full flex flex-col md:flex-row md:justify-center md:items-center">
+    <div class="w-full flex flex-col md:flex-row md:justify-center md:items-center">
       <input
         type="text"
         value={searchPrompt}
         onChange={(e) => setSearchPrompt(e.target.value)}
         placeholder="Enter Amazon product URL"
-        className="w-full md:w-1/2 p-2 pl-10 text-sm text-gray-700"
+        class="w-full md:w-1/2 p-2 pl-10 text-sm text-gray-700"
       />
       <button
   onClick={handleSubmit}
-  className={`ml-2 md:ml-4 py-2 px-6 text-sm text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ${
+  class={`ml-2 md:ml-4 py-2 px-6 text-sm text-black bg-yellow-400 hover:bg-yellow-500 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300 ${
     scraping ? 'opacity-50 cursor-not-allowed' : ''
   }`}
   disabled={scraping}

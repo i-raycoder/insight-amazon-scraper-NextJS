@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="icon" type="image/png" href="/insight-logo.png" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body class={inter.class}>{children}</body>
     </html>
   );
 }

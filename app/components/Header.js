@@ -10,12 +10,12 @@ export default function Header() {
   return (
     <header class="fixed top-0 w-full clearNav z-50">
       <div class="max-w-5xl mx-auto flex flex-wrap p-5 flex-col md:flex-row">
-        <div className="flex flex-row items-center justify-between p-3 md:p-1">
+        <div class="flex flex-row items-center justify-between p-3 md:p-1">
           <a href="/" class="flex text-3xl text-white font-medium mb-4 md:mb-0">
             Insight.
           </a>
           <button
-            className="text-white pb-4 cursor-pointer leading-none px-3 py-1 md:hidden outline-none focus:outline-none content-end ml-auto"
+            class="text-white pb-4 cursor-pointer leading-none px-3 py-1 md:hidden outline-none focus:outline-none content-end ml-auto"
             type="button"
             aria-label="button"
             onClick={() => setNavbarOpen(!navbarOpen)}
@@ -30,7 +30,7 @@ export default function Header() {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="feather feather-menu"
+              class="feather feather-menu"
             >
               <line x1="3" y1="12" x2="21" y2="12"></line>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -39,7 +39,7 @@ export default function Header() {
           </button>
         </div>
         <div
-          className={
+          class={
             "md:flex flex-grow items-center" +
             (navbarOpen ? " flex" : " hidden")
           }
@@ -48,17 +48,17 @@ export default function Header() {
             <a class="mr-11 pr-2 cursor-pointer text-gray-300 hover:text-white font-semibold tr04">
               Features
             </a>
-            <div className="relative">
+            <div class="relative">
               <button
                 type="button"
-                className="
+                class="
                    group rounded-md text-gray-300 inline-flex items-center text-base font-medium focus:outline-none pb-8'
                   "
                 onMouseEnter={() => (setFlyer(!flyer), setFlyerTwo(false))}
               >
-                <span className="tr04">Projects</span>
+                <span class="tr04">Projects</span>
                 <svg
-                  className={
+                  class={
                     flyer === true
                       ? "transform rotate-180 ml-3 h-5 w-5 transition ease-out duration-200"
                       : "ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
@@ -77,49 +77,49 @@ export default function Header() {
               </button>
               <div
                 onMouseLeave={() => setFlyer(false)}
-                className={
+                class={
                   flyer
                     ? "opacity-100 translate-y-0 transition ease-out duration-200 absolute z-10 -ml-4 mt-3 g327 border transform px-2 w-screen max-w-sm sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
                     : "hidden opacity-0 translate-y-1 absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"
                 }
               >
-                <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                  <div className="relative grid gap-6 bg-black px-2 py-6 sm:gap-8 ">
+                <div class="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                  <div class="relative grid gap-6 bg-black px-2 py-6 sm:gap-8 ">
                     <a
                       href="/"
-                      className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-800 tr04"
+                      class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-800 tr04"
                     >
-                      <div className="ml-4">
-                        <p className="text-base font-medium text-white">
+                      <div class="ml-4">
+                        <p class="text-base font-medium text-white">
                           Pantrastic.
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500">
                           Pantry Tracking App.
                         </p>
                       </div>
                     </a>
                     <a
                       href="/"
-                      className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-800 tr04"
+                      class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-800 tr04"
                     >
-                      <div className="ml-4">
-                        <p className="text-base font-medium text-white">
+                      <div class="ml-4">
+                        <p class="text-base font-medium text-white">
                           Crayo - Ai
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500">
                           Personalized Chat-Bot.
                         </p>
                       </div>
                     </a>
                     <a
                       href="/"
-                      className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-800 tr04"
+                      class="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-800 tr04"
                     >
-                      <div className="ml-4">
-                        <p className="text-base font-medium text-white">
+                      <div class="ml-4">
+                        <p class="text-base font-medium text-white">
                           GameFlip.
                         </p>
-                        <p className="mt-1 text-sm text-gray-500">
+                        <p class="mt-1 text-sm text-gray-500">
                           Flashcard And Quiz App For Gamers.
                         </p>
                       </div>
@@ -140,7 +140,7 @@ export default function Header() {
             href="https://www.linkedin.com/in/muhammad-rayan-30604b252/" // Replace with your LinkedIn profile URL
             rel="noopener noreferrer"
             target="_blank"
-            className="pl-7 invisible md:visible"
+            class="pl-7 invisible md:visible"
           >
             <svg
               width="30"
@@ -149,7 +149,7 @@ export default function Header() {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               title="LinkedIn logo"
-              className="linkedin-link--logo"
+              class="linkedin-link--logo"
             >
               <path
               data-v-54e46119=""
@@ -166,7 +166,7 @@ export default function Header() {
             href="https://github.com/i-raycoder"
             rel="noopener noreferrer"
             target="_blank"
-            className="pl-7 invisible md:visible"
+            class="pl-7 invisible md:visible"
           >
             <svg
               data-v-54e46119=""
