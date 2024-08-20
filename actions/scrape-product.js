@@ -1,12 +1,10 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import chromium from "chrome-aws-lambda";
-import puppeteer from "puppeteer-core";
-
-const isProduction = process.env.NODE_ENV === "production";
+const puppeteer = process.env.NODE_ENV === "production" ? require("puppeteer-core") : require("puppeteer");
+const chromium = process.env.NODE_ENV === "production" ? require("chrome-aws-lambda") : null;
 
 async function launchBrowser() {
-  if (isProduction) {
+  if (process.env.NODE_ENV === "production") {
     return puppeteer.launch({
       args: chromium.args,
       executablePath: await chromium.executablePath,
