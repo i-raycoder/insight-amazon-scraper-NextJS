@@ -1,9 +1,20 @@
 {
-  "functions": {
-    "actions/*": {
-      "runtime": "now-node@1.0.0",
-      "memory": 512,
-      "maxDuration": 10
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node",
+      "config": {
+        "runtime": "nodejs14.x",
+        "memory": 512,
+        "maxDuration": 10
+      }
     }
-  }
+  ],
+  "functions": [
+    {
+      "src": "actions/scrape-product",
+      "handler": "scrapeAmzProduct"
+    }
+  ]
 }
