@@ -1,28 +1,28 @@
 "use server";
 import { revalidatePath } from "next/cache";
-
-const puppeteer = require('puppeteer');
+import chrome from 'chrome-aws-lambda';
+const puppeteer = require("puppeteer");
 
 (async () => {
   let browser;
   try {
     browser = await puppeteer.launch({
       headless: true,
+      executablePath: await chrome.executablePath,
+      args: chrome.args,
     });
 
     const page = await browser.newPage();
-    await page.goto('https://example.com');
+    await page.goto("https://example.com");
     // Add your scraping logic here
-
   } catch (error) {
-    console.error('Error during scraping:', error);
+    console.error("Error during scraping:", error);
   } finally {
     if (browser) {
       await browser.close();
     }
   }
 })();
-
 
 export async function scrapeAmzProduct(url) {
   try {
@@ -35,10 +35,14 @@ export async function scrapeAmzProduct(url) {
 
     console.log("Extracting product data...");
     const data = await page.evaluate(() => {
-      const productName = document.querySelector("#productTitle")?.innerText.trim() || "N/A";
-      const productPrice = document.querySelector(".a-price .a-offscreen")?.innerText.trim() || "N/A";
-      const imageUrl = document.querySelector("#imgTagWrapperId img")?.src || "";
-      
+      const productName =
+        document.querySelector("#productTitle")?.innerText.trim() || "N/A";
+      const productPrice =
+        document.querySelector(".a-price .a-offscreen")?.innerText.trim() ||
+        "N/A";
+      const imageUrl =
+        document.querySelector("#imgTagWrapperId img")?.src || "";
+
       return { productName, productPrice, imageUrl };
     });
 
@@ -46,7 +50,7 @@ export async function scrapeAmzProduct(url) {
 
     await browser.close();
     revalidatePath("/");
-    return {...data, url};
+    return { ...data, url };
   } catch (err) {
     console.error("Error during scraping:", err);
     return null;
