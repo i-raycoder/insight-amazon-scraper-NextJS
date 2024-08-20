@@ -13,7 +13,8 @@
   ],
   "functions": {
     "actions/scrape-product": {
-      "handler": "scrapeAmzProduct"
+      "src": "scrapeAmzProduct.js",
+      "export": "default"
     }
   }
 }
