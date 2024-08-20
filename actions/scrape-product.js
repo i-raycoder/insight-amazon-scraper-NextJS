@@ -1,33 +1,44 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import chrome from 'chrome-aws-lambda';
-const puppeteer = require("puppeteer");
+import puppeteer from "puppeteer";
 
-(async () => {
-  let browser;
-  try {
-    browser = await puppeteer.launch({
+const isProduction = process.env.NODE_ENV === "production";
+
+async function launchBrowser() {
+  if (isProduction) {
+    // Ensure this path is correct or set as an environment variable in Vercel
+    const executablePath = process.env.CHROME_EXECUTABLE_PATH || "/usr/bin/chromium-browser";
+    return puppeteer.launch({
       headless: true,
-      executablePath: await chrome.executablePath,
-      args: chrome.args,
+      executablePath,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
-
-    const page = await browser.newPage();
-    await page.goto("https://example.com");
-    // Add your scraping logic here
-  } catch (error) {
-    console.error("Error during scraping:", error);
-  } finally {
-    if (browser) {
-      await browser.close();
-    }
+  } else {
+    return puppeteer.launch({
+      headless: true
+    });
   }
-})();
+}
+
+function isValidURL(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
 
 export async function scrapeAmzProduct(url) {
+  if (!isValidURL(url)) {
+    console.error("Invalid URL:", url);
+    return null;
+  }
+
+  let browser;
   try {
     console.log("Launching Puppeteer...");
-    const browser = await puppeteer.launch({ headless: true }); // Headless mode
+    browser = await launchBrowser();
     const page = await browser.newPage();
 
     console.log("Navigating to:", url);
@@ -48,11 +59,14 @@ export async function scrapeAmzProduct(url) {
 
     console.log("Scraped Data:", data);
 
-    await browser.close();
     revalidatePath("/");
     return { ...data, url };
   } catch (err) {
     console.error("Error during scraping:", err);
     return null;
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
   }
 }
