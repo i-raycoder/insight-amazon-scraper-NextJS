@@ -11,10 +11,9 @@
       }
     }
   ],
-  "functions": [
-    {
-      "src": "actions/scrape-product",
+  "functions": {
+    "actions/scrape-product": {
       "handler": "scrapeAmzProduct"
     }
-  ]
+  }
 }
