@@ -1,33 +1,39 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import chrome from 'chrome-aws-lambda';
-const puppeteer = require("puppeteer");
 
-(async () => {
-  let browser;
-  try {
-    browser = await puppeteer.launch({
-      headless: true,
-      executablePath: await chrome.executablePath,
-      args: chrome.args,
-    });
+let puppeteer;
+let chrome;
 
-    const page = await browser.newPage();
-    await page.goto("https://example.com");
-    // Add your scraping logic here
-  } catch (error) {
-    console.error("Error during scraping:", error);
-  } finally {
-    if (browser) {
-      await browser.close();
-    }
-  }
-})();
+if (process.env.VERCEL) {
+  // Use chrome-aws-lambda for Vercel deployments
+  chrome = require("chrome-aws-lambda");
+  puppeteer = require("puppeteer-core");
+} else {
+  // Use puppeteer for local development
+  puppeteer = require("puppeteer");
+}
 
 export async function scrapeAmzProduct(url) {
+  let browser;
   try {
     console.log("Launching Puppeteer...");
-    const browser = await puppeteer.launch({ headless: true }); // Headless mode
+    
+    if (process.env.VERCEL) {
+      // Use chrome-aws-lambda configurations for Vercel
+      browser = await puppeteer.launch({
+        args: chrome.args,
+        defaultViewport: chrome.defaultViewport,
+        executablePath: await chrome.executablePath,
+        headless: chrome.headless,
+      });
+    } else {
+      // Standard Puppeteer configuration for local
+      browser = await puppeteer.launch({
+        headless: true,
+        args: ["--no-sandbox", "--disable-setuid-sandbox"], // Additional arguments for local environments
+      });
+    }
+
     const page = await browser.newPage();
 
     console.log("Navigating to:", url);
@@ -35,14 +41,10 @@ export async function scrapeAmzProduct(url) {
 
     console.log("Extracting product data...");
     const data = await page.evaluate(() => {
-      const productName =
-        document.querySelector("#productTitle")?.innerText.trim() || "N/A";
-      const productPrice =
-        document.querySelector(".a-price .a-offscreen")?.innerText.trim() ||
-        "N/A";
-      const imageUrl =
-        document.querySelector("#imgTagWrapperId img")?.src || "";
-
+      const productName = document.querySelector("#productTitle")?.innerText.trim() || "N/A";
+      const productPrice = document.querySelector(".a-price .a-offscreen")?.innerText.trim() || "N/A";
+      const imageUrl = document.querySelector("#imgTagWrapperId img")?.src || "";
+      
       return { productName, productPrice, imageUrl };
     });
 
@@ -53,6 +55,7 @@ export async function scrapeAmzProduct(url) {
     return { ...data, url };
   } catch (err) {
     console.error("Error during scraping:", err);
+    if (browser) await browser.close(); // Ensure the browser is closed in case of an error
     return null;
   }
 }
