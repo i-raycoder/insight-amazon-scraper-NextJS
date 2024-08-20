@@ -12,9 +12,9 @@
     }
   ],
   "functions": {
-    "actions/scrape-product": {
-      "src": "scrapeAmzProduct.js",
-      "export": "default"
+    "actions/scrape-product.js": {
+      "runtime": "nodejs14.x",
+      "memory": 1024
     }
   }
 }
