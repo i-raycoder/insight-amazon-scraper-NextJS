@@ -1,21 +1,20 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import puppeteer from "puppeteer";
+import chromium from "chrome-aws-lambda";
+import puppeteer from "puppeteer-core";
 
 const isProduction = process.env.NODE_ENV === "production";
 
 async function launchBrowser() {
   if (isProduction) {
-    // Ensure this path is correct or set as an environment variable in Vercel
-    const executablePath = process.env.CHROME_EXECUTABLE_PATH || "/usr/bin/chromium-browser";
     return puppeteer.launch({
-      headless: true,
-      executablePath,
-      args: ['--no-sandbox', '--disable-setuid-sandbox']
+      args: chromium.args,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
     });
   } else {
     return puppeteer.launch({
-      headless: true
+      headless: true,
     });
   }
 }
