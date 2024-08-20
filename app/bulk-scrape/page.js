@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import * as XLSX from "xlsx";
 import { scrapeAmzProduct } from "@/actions/scrape-product";
 import useStore from "@/hooks/amz-products";
+import Footer from "../components/Footer";
 
 export default function BulkScrape() {
   const [urls, setUrls] = useState("");
@@ -88,7 +89,7 @@ export default function BulkScrape() {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <div className="container mx-auto p-8 flex-grow">
-        <header className="bg-gray-800 p-4 shadow-md flex items-center justify-between">
+        <header className="bg-black p-4 shadow-md flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <h1 className="text-2xl font-bold text-white">Bulk Scrape.</h1>
           </div>
@@ -165,11 +166,13 @@ export default function BulkScrape() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-4 mt-auto">
+      <footer className="bg-black text-white py-4 mt-auto">
         <div className="container mx-auto text-center">
-          © 2024 Insight - All Rights Reserved
+          © 2024 Insight - All Rights Reserved.
         </div>
       </footer>
     </div>
+
+    
   );
 }
