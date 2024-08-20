@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "chrome-aws-lambda": "^10.1.0",
+    "ignore-loader": "^0.1.2",
     "next": "14.2.5",
     "puppeteer": "^23.1.0",
     "puppeteer-core": "^10.4.0",

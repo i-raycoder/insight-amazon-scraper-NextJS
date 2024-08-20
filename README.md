@@ -30,7 +30,7 @@ To get started with Insight, you'll need to set up a few things on your local ma
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/insight.git
+git clone https://github.com/i-raycoder/insight.git
 cd insight
 ```
 
@@ -101,9 +101,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-### Additional Notes:
-
-- **Favicon**: Make sure the favicon is correctly placed in the `public` directory.
-- **File Paths**: Adjust any file paths and environment variables as necessary.
-
-Feel free to customize this README further to better suit your project’s specifics or branding.
