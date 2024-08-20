@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/*": {
+    "actions/*": {
       "runtime": "now-node@1.0.0",
       "memory": 512,
       "maxDuration": 10
