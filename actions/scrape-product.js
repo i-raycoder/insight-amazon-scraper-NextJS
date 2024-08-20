@@ -1,33 +1,14 @@
 "use server";
 import { revalidatePath } from "next/cache";
 
-let puppeteer;
-let chrome;
+const puppeteer = require('puppeteer');
 
-if (process.env.VERCEL) {
-  chrome = require("chrome-aws-lambda");
-  puppeteer = require("puppeteer-core");
-} else {
-  puppeteer = require("puppeteer");
-}
-
-// This IIFE runs immediately to perform an initial scrape (if necessary)
 (async () => {
   let browser;
   try {
-    if (process.env.VERCEL) {
-      browser = await puppeteer.launch({
-        args: chrome.args,
-        defaultViewport: chrome.defaultViewport,
-        executablePath: await chrome.executablePath,
-        headless: chrome.headless,
-      });
-    } else {
-      browser = await puppeteer.launch({
-        headless: true,
-        args: ["--no-sandbox", "--disable-setuid-sandbox"], // For local environments, especially with Docker
-      });
-    }
+    browser = await puppeteer.launch({
+      headless: true,
+    });
 
     const page = await browser.newPage();
     await page.goto('https://example.com');
@@ -42,26 +23,11 @@ if (process.env.VERCEL) {
   }
 })();
 
-// This function can be called to scrape a product from Amazon
+
 export async function scrapeAmzProduct(url) {
-  let browser;
   try {
     console.log("Launching Puppeteer...");
-    
-    if (process.env.VERCEL) {
-      browser = await puppeteer.launch({
-        args: chrome.args,
-        defaultViewport: chrome.defaultViewport,
-        executablePath: await chrome.executablePath,
-        headless: chrome.headless,
-      });
-    } else {
-      browser = await puppeteer.launch({
-        headless: true,
-        args: ["--no-sandbox", "--disable-setuid-sandbox"], // For local environments, especially with Docker
-      });
-    }
-
+    const browser = await puppeteer.launch({ headless: true }); // Headless mode
     const page = await browser.newPage();
 
     console.log("Navigating to:", url);
@@ -80,10 +46,9 @@ export async function scrapeAmzProduct(url) {
 
     await browser.close();
     revalidatePath("/");
-    return { ...data, url };
+    return {...data, url};
   } catch (err) {
     console.error("Error during scraping:", err);
-    if (browser) await browser.close(); // Ensure the browser is closed in case of an error
     return null;
   }
 }
